@@ -2,6 +2,7 @@ import cv2
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageTk
+from tkinter import font as tkfont
 
 # Function to select an image file
 def select_image():
@@ -34,12 +35,57 @@ def detect_faces(image_path):
     label.config(image=image)
     label.image = image
 
+import tkinter as tk
+from PIL import Image, ImageTk
+
 # Create the main window
 root = tk.Tk()
 root.title("Face Detection")
 
-# Create a button to select an image
-button = tk.Button(root, text="Select Image", command=select_image)
+# Get screen width and height
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
+# Set the window size to match the screen size
+root.geometry(f"{screen_width}x{screen_height}")
+
+# Load and resize the background image to the screen size
+bg_image = Image.open("script.jpg")
+bg_image = bg_image.resize((screen_width, screen_height), Image.Resampling.LANCZOS)
+
+# Convert the image to a Tkinter-compatible PhotoImage object
+bg_photo = ImageTk.PhotoImage(bg_image)
+
+# Create a label to display the background image
+background_label = tk.Label(root, image=bg_photo)
+
+# Place the label at the back (fill entire window)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+# Store a reference to prevent garbage collection
+background_label.image = bg_photo
+
+
+# Styling options
+button_font = tkfont.Font(family="Helvetica", size=16, weight="bold")
+button_bg = "#4CAF50"  # Green background
+button_fg = "white"    # White text color
+button_active_bg = "#45a049"  # Darker green when the button is pressed
+button_active_fg = "#ffffff"  # Keep white text when pressed
+
+# Create a button to select an image with custom styling
+button = tk.Button(
+    root,
+    text="Select Image",
+    command=select_image,
+    font=button_font,     # Apply custom font
+    bg=button_bg,         # Background color
+    fg=button_fg,         # Foreground color (text color)
+    activebackground=button_active_bg,  # Background color when clicked
+    activeforeground=button_active_fg,  # Foreground color when clicked
+    padx=20,              # Padding for X axis
+    pady=10               # Padding for Y axis
+)
 button.pack(pady=20)
 
 # Label to display the image
