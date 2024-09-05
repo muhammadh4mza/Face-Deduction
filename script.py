@@ -35,9 +35,6 @@ def detect_faces(image_path):
     label.config(image=image)
     label.image = image
 
-import tkinter as tk
-from PIL import Image, ImageTk
-
 # Create the main window
 root = tk.Tk()
 root.title("Face Detection")
@@ -50,7 +47,7 @@ screen_height = root.winfo_screenheight()
 root.geometry(f"{screen_width}x{screen_height}")
 
 # Load and resize the background image to the screen size
-bg_image = Image.open("script.jpg")
+bg_image = Image.open("facerecognition.webp")
 bg_image = bg_image.resize((screen_width, screen_height), Image.Resampling.LANCZOS)
 
 # Convert the image to a Tkinter-compatible PhotoImage object
@@ -68,7 +65,7 @@ background_label.image = bg_photo
 
 # Styling options
 button_font = tkfont.Font(family="Helvetica", size=16, weight="bold")
-button_bg = "#4CAF50"  # Green background
+button_bg = "#1e1e1e"  
 button_fg = "white"    # White text color
 button_active_bg = "#45a049"  # Darker green when the button is pressed
 button_active_fg = "#ffffff"  # Keep white text when pressed
