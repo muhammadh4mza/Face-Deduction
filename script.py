@@ -73,7 +73,7 @@ button_fg = "white"    # White text color
 button_active_bg = "#45a049"  # Darker green when the button is pressed
 button_active_fg = "#ffffff"  # Keep white text when pressed
 
-# Create a button to select an image with custom styling
+# Create a button to select an image with custom stylings
 button = tk.Button(
     root,
     text="Select Image",
